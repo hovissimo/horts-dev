@@ -30,7 +30,7 @@ export const AuthContextProvider = ({ children }) => {
           // firebaseUser is a https://firebase.google.com/docs/reference/js/firebase.User
           // User is signed in.
           const user = {
-            displayName: firebaseUser.displayName,
+            displayName: firebaseUser.isAnonymous ? "An anonymous mouse" : firebaseUser.displayName,
             email: firebaseUser.email,
             id: firebaseUser.uid,
             isAnonymous: firebaseUser.isAnonymous,
