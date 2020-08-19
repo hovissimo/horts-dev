@@ -53,6 +53,7 @@ module.exports = () => {
   if (isDevelopment) {
     config.devServer = {
       contentBase: './dist',
+      historyApiFallback: true,
       hot: true,
     }
     config.devtool = 'inline-source-map'
