@@ -41,7 +41,7 @@ export function App() {
               />
             )}
           </AuthContext.Consumer>
-            {/* <Route exact path="/" component={Landing} /> */}
+          <Route exact path="/" component={Landing} />
         </BrowserRouter>
       </Provider>
     </AuthContextProvider>

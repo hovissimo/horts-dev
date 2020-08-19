@@ -18,9 +18,9 @@ export const Landing = ({ children }) => {
     <Container className={classes.landing}>
       <h1>Hello this is the landing page</h1>
       <AuthContext.Consumer>
-        ({user}) => (
-          {user?.displayName} is logged in with uid: {user?.uid}.
-        )
+        {({user}) => (
+          <>{user?.displayName} is logged in with id: {user?.id}.</>
+        )}
         </AuthContext.Consumer>
     </Container>
   )
