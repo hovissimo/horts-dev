@@ -30,7 +30,6 @@ export function App() {
       <Provider store={store}>
         <BrowserRouter>
           <HeaderBar />
-          <Route exact path="/" component={Landing} />
           <Route exact path="/login" component={Login} />
           <AuthContext.Consumer>
             {({ user }) =>
@@ -43,6 +42,7 @@ export function App() {
               )
             }
           </AuthContext.Consumer>
+            {/* <Route exact path="/" component={Landing} /> */}
         </BrowserRouter>
       </Provider>
     </AuthContextProvider>

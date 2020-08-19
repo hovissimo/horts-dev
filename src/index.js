@@ -3,7 +3,8 @@ import ReactDOM from "react-dom"
 
 import { App } from "./App"
 
-const rootElement = document.getElementById("root")
+const rootElement = document.createElement('div')
+document.body.appendChild(rootElement)
 ReactDOM.render(
   <React.StrictMode>
       <App />

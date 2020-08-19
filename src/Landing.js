@@ -19,7 +19,7 @@ export const Landing = ({ children }) => {
       <h1>Hello this is the landing page</h1>
       <AuthContext.Consumer>
         ({user}) => (
-          {user.displayName} is logged in with uid: {user.uid}.
+          {user?.displayName} is logged in with uid: {user?.uid}.
         )
         </AuthContext.Consumer>
     </Container>

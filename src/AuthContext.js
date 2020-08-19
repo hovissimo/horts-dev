@@ -5,9 +5,14 @@ import "@firebase/auth"
 // import { store } from "./store"
 // import { userActions } from "./features/User/slice"
 
+const authApi = {
+  logOut: () => { throw "logOut is not implemented" },
+  logIn: () => { throw "logIn is not implemented" },
+}
+
 export const AuthContext = createContext({
   user: undefined,
-  logOut: () => {},
+  authApi,
 })
 
 export const AuthContextProvider = ({ children }) => {
@@ -42,7 +47,7 @@ export const AuthContextProvider = ({ children }) => {
   }, [setUser])
 
   return (
-    <AuthContext.Provider value={{ user, logOut: AuthContext.logOut }}>
+    <AuthContext.Provider value={{ user, authApi }}>
       {children}
     </AuthContext.Provider>
   )
