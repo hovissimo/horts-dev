@@ -1,0 +1,22 @@
+{
+  "rules": {
+    ".read": "auth != null",
+       
+    "messages": {
+      ".write": "auth != null"
+    },  
+    "widgets": {
+      ".write": "auth != null"
+    },  
+      
+    "games": {
+      ".write": "auth != null"
+    },
+      
+    "users": {
+      "$uid": {
+        ".write": "auth.uid === $uid"
+      }
+    }
+  }
+}
