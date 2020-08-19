@@ -5,6 +5,7 @@ import "./firebaseInit"
 import { AuthContext, AuthContextProvider } from "./AuthContext"
 
 import { Landing } from "./Landing"
+import { Profile } from "./Profile"
 import { HeaderBar } from "./HeaderBar"
 
 import { PrivateRoute } from "./PrivateRoute"
@@ -32,15 +33,13 @@ export function App() {
           <HeaderBar />
           <Route exact path="/login" component={Login} />
           <AuthContext.Consumer>
-            {({ user }) =>
-              console.log(`Consumer says: ${JSON.stringify({user})}`) || (
-                <PrivateRoute
-                  path="/profile"
-                  authed={!!user}
-                  component={() => <div>hi</div>}
-                />
-              )
-            }
+            {({ user }) => (
+              <PrivateRoute
+                path="/profile"
+                authed={!!user}
+                component={() => <Profile />}
+              />
+            )}
           </AuthContext.Consumer>
             {/* <Route exact path="/" component={Landing} /> */}
         </BrowserRouter>

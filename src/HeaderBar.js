@@ -1,6 +1,7 @@
 import React from "react"
 import {useHistory} from "react-router-dom"
 import {MenuDrawer} from "./MenuDrawer"
+import { AuthContext } from "./AuthContext"
 
 import { makeStyles } from "@material-ui/core/styles"
 import Toolbar from "@material-ui/core/Toolbar"
@@ -61,9 +62,12 @@ export const HeaderBar = () => {
           <Typography variant="h6" className={classes.title}>
             News
           </Typography>
-          <Button color="inherit" onClick={() => history.push("/login")}>
-            Login
-          </Button>
+          <AuthContext.Consumer>
+            {({authApi, user}) => {
+              const target = !!user ? "profile" : "login";
+              return <Button color="inherit" onClick={() => history.push(`/${target}`)}>{target}</Button>
+            }}
+          </AuthContext.Consumer>
         </Toolbar>
       </AppBar>
     </div>

@@ -7,7 +7,11 @@ import "@firebase/auth"
 
 const authApi = {
   logOut: () => { throw "logOut is not implemented" },
-  logIn: () => { throw "logIn is not implemented" },
+  anonymousLogIn: () => {
+    console.log("Trying to log in.")
+    firebase.auth().signInAnonymously()
+    console.log('seriously')
+  },
 }
 
 export const AuthContext = createContext({
