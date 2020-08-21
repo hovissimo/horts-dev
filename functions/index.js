@@ -1,6 +1,8 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
+const database = admin.database()
+
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -25,13 +27,13 @@ admin.initializeApp();
 exports.addMessage = functions.https.onRequest((req, res) => {
   const original = req.query.text;
   const timestamp = Date.now()
-  const snapshot = admin.database().ref('/messages').push({original})
+  const snapshot = database.ref('/messages').push({original})
   res.json({result: `Message with ID: ${snapshot.ref} added.`});
 });
 
 exports.addMessageRedir = functions.https.onRequest(async (req, res) => {
   const original = req.query.text;
-  const snapshot = await admin.database().ref('/messages').push({original})
+  const snapshot = await database.ref('/messages').push({original})
   res.redirect(303, snapshot.ref.toString())
 })
 
