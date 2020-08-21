@@ -1,11 +1,17 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+try {
 admin.initializeApp();
-const database = admin.database()
+} catch (error) {
+  if (error.errorInfo.code === 'app/duplicate-app') {
+    // pass, this happens when we use `mocha --watch`
+  } else {
+    throw error
+  }
+}
 
-exports.addNewUsersToDatabase = require('./addNewUsersToDatabase')({database, functions})
-
-
+const addNewUsersToDatabase = require('./addNewUsersToDatabase')
+exports.addNewUsersToDatabase = addNewUsersToDatabase({admin, functions})
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -57,10 +63,11 @@ exports.addMessageRedir = functions.https.onRequest(async (req, res) => {
 //       // Setting an 'uppercase' field in Cloud Firestore document returns a Promise.
 //       return snap.ref.set({uppercase}, {merge: true});
 //     });
-exports.makeUppercase = functions.database.ref('/messages/{pushId}/original')
+exports.makeUppercase = functions.database
+  .ref('/messages/{pushId}/original')
   .onCreate((snapshot, context) => {
     const original = snapshot.val()
-    console.log('Uppercasing', context.params.pushId, original)
+    // console.log('Uppercasing', context.params.pushId, original)
     const uppercase = original.toUpperCase()
     // Required to return a Promise when performing asynchronous actions like writing to the
     // database
