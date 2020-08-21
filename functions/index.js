@@ -3,6 +3,9 @@ const admin = require('firebase-admin');
 admin.initializeApp();
 const database = admin.database()
 
+exports.addNewUsersToDatabase = require('./addNewUsersToDatabase')({database, functions})
+
+
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -63,3 +66,39 @@ exports.makeUppercase = functions.database.ref('/messages/{pushId}/original')
     // database
     return snapshot.ref.parent.child('uppercase').set(uppercase)
   })
+
+// https://github.com/firebase/firebase-functions/issues/595
+// exports.handleNewSignups = functions.auth.user().onCreate(async user => {
+//   const { uid, displayName, email } = user
+
+//   return await admin
+//     .firestore()
+//     .collection("users")
+//     .doc(uid)
+//     .set({ uid, displayName, email })
+// })
+
+exports.helloAuth = functions.auth.user().onCreate(async user => {
+  const { uid, displayName, email } = user
+  console.log(user)
+
+//   return await admin
+//     .firestore()
+//     .collection("users")
+//     .doc(uid)
+//     .set({ uid, displayName, email })
+})
+
+// admin.auth().createUser({
+//   email: 'horts-test1@bunkercode.com',
+//   displayName: 'horts test1',
+//   password: 'anorak',
+//   emailVerified: true,
+//   phoneNumber: '+17732346847',
+// }).catch((error) => {
+//   if (error.errorInfo.code === 'auth/email-already-exists') {
+//     // pass
+//   } else {
+//     throw error
+//   }
+// })
