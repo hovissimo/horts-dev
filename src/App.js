@@ -1,7 +1,6 @@
 import React from "react"
 import { BrowserRouter, Route } from "react-router-dom"
 import "./firebaseInit"
-// import "./firebaseAuth"
 import { AuthContext, AuthContextProvider } from "./AuthContext"
 
 import { Landing } from "./Landing"

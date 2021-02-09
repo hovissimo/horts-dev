@@ -21,7 +21,7 @@ export const AuthContext = createContext({
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(undefined)
-  
+
   useEffect(() => {
     const authUnsubscribe = firebase
       .auth()
@@ -35,16 +35,14 @@ export const AuthContextProvider = ({ children }) => {
             id: firebaseUser.uid,
             isAnonymous: firebaseUser.isAnonymous,
           }
-          console.debug("Signed in: ", user)
           setUser(user)
           // store.dispatch(userActions.userAdded(user))
         } else {
-          // User is signed out.
           console.debug("Signed out.")
           setUser(undefined)
         }
       })
-    console.log("firebase Auth subscribed")
+    //console.log("firebase Auth subscribed")
 
     // clean up: unsub from firebase auth
     return () => authUnsubscribe()
