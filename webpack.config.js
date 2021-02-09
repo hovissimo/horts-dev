@@ -5,11 +5,10 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-module.exports = () => {
+const makeConfig = () => {
   const config = {
     entry: {
       app: './src/index.js',
-      // print: './src/print.js',
     },
     module: {
       rules: [
@@ -38,7 +37,7 @@ module.exports = () => {
     },
     mode: isDevelopment ? "development" : "production",
     output: {
-      filename: '[name].bundle.js',
+      filename: '[name].js',
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
@@ -54,12 +53,13 @@ module.exports = () => {
     config.devServer = {
       contentBase: './dist',
       historyApiFallback: true,
-      hot: true,
     }
     config.devtool = 'inline-source-map'
     config.plugins.push(new ReactRefreshWebpackPlugin())
-    // delete config.entry.print
   }
 
   return config;
 };
+
+module.exports = makeConfig()
+
