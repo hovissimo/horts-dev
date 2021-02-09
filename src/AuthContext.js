@@ -45,8 +45,8 @@ export const AuthContextProvider = ({ children }) => {
     //console.log("firebase Auth subscribed")
 
     // clean up: unsub from firebase auth
-    return () => authUnsubscribe()
-  }, [setUser])
+    return authUnsubscribe;
+  }, [])
 
   return (
     <AuthContext.Provider value={{ user, authApi }}>
