@@ -43,7 +43,7 @@ const makeConfig = () => {
     plugins: [
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-        title: 'Output Management',
+        title: 'Horts',
       }),
       isDevelopment && new ReactRefreshWebpackPlugin(),
     ].filter(Boolean),
