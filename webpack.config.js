@@ -51,7 +51,7 @@ const makeConfig = () => {
 
   if (isDevelopment) {
     config.devServer = {
-      contentBase: './dist',
+      static: './dist',
       historyApiFallback: true,
     }
     config.devtool = 'inline-source-map'
